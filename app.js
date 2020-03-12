@@ -13,7 +13,14 @@ postsRouter = require('./routes/post');
 mongoose.connect(process.env.DB_CONNECTION,
     { useNewUrlParser: true,
     useUnifiedTopology: true  },
-    ()=> console.log('connected to db'));
+    (error)=> {
+        if(!error){
+            console.log('connected to db');
+        }else{
+            console.log(`error connecting to the db ${error}`);
+
+        }
+    });
 
 
 //middlewares
