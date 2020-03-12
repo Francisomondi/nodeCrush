@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const mongoose = require ('mongoose');
 require('dotenv/config');
+const bodyparser = require('body-parser');
+
 
 
 //importing routes
@@ -14,6 +16,9 @@ mongoose.connect(process.env.DB_CONNECTION,
     ()=> console.log('connected to db'));
 
 
+//middlewares
+app.use(bodyparser.json());
+
 //routes
 app.get('/', (req,res)=>{
  res.send('hello world');
@@ -21,5 +26,6 @@ app.get('/', (req,res)=>{
 
 app.use('/posts', postsRouter);
 
-//listen
-app.listen(3000, console.log('server started on port 3000'));
+//listen to a server
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log(`Server started on port ${port}....`));
