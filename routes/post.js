@@ -67,4 +67,16 @@ const writable = fs.createWriteStream(__dirname + '/nodePipe.txt');
 // use pipe to copy readable to writable
  readable.pipe(writable);
 
+
+var path = 'routes/node.txt';
+// checks execute permission 
+fs.access(path, fs.constants.R_OK, (err) => {  
+    if (err) { 
+      console.log("%s doesn't exist", path);
+
+    } else { 
+      console.log('can execute %s', path);
+     } 
+    }); 
+
 module.exports = router;
