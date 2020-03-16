@@ -6,29 +6,35 @@ const bodyparser = require('body-parser');
 
 
 
+
 //importing routes
 postsRouter = require('./routes/post');
 
 //DB CONNECTION
 mongoose.connect(process.env.DB_CONNECTION,
-    { useNewUrlParser: true,
+   { useNewUrlParser: true,
     useUnifiedTopology: true  },
     (error)=> {
-        if(!error){
-            console.log('connected to db');
+       if(!error){
+           console.log('connected to db');
         }else{
-            console.log(`error connecting to the db ${error}`);
-
-        }
+           console.log(`error connecting to the db ${error}`);
+     }
     });
+//serving static files
+app.use(express.static('public'));
 
 
 //middlewares
 app.use(bodyparser.json());
 
+//view engine
+app.set('view engine', 'ejs');
+app.set('views', 'views');
+
 //routes
 app.get('/', (req,res)=>{
- res.send('hello world');
+ res.render('index');
 });
 
 app.use('/posts', postsRouter);

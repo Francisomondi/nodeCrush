@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Post = require('../models/Post');
+const fs = require('fs');
 
 //GET BACK ALL THE POSTS
 router.get('/',async (req,res)=>{
@@ -59,5 +60,11 @@ router.delete('/:id', async (req, res)=>{
   }
      
 });
+
+const readable = fs.createReadStream(__dirname + '/node.txt', { encoding: 'utf8', highWaterMark: 16 * 1024 });
+// create writable stream 
+const writable = fs.createWriteStream(__dirname + '/nodePipe.txt');
+// use pipe to copy readable to writable
+ readable.pipe(writable);
 
 module.exports = router;
