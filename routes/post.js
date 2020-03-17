@@ -60,23 +60,5 @@ router.delete('/:id', async (req, res)=>{
   }
      
 });
-
-const readable = fs.createReadStream(__dirname + '/node.txt', { encoding: 'utf8', highWaterMark: 16 * 1024 });
-// create writable stream 
-const writable = fs.createWriteStream(__dirname + '/nodePipe.txt');
-// use pipe to copy readable to writable
- readable.pipe(writable);
-
-
-var path = 'routes/node.txt';
-// checks execute permission 
-fs.access(path, fs.constants.R_OK, (err) => {  
-    if (err) { 
-      console.log("%s doesn't exist", path);
-
-    } else { 
-      console.log('can execute %s', path);
-     } 
-    }); 
-
+  
 module.exports = router;

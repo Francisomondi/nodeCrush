@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const mongoose = require ('mongoose');
 require('dotenv/config');
+const ejs = require('ejs');
 const bodyparser = require('body-parser');
 
 
@@ -21,16 +22,16 @@ mongoose.connect(process.env.DB_CONNECTION,
            console.log(`error connecting to the db ${error}`);
      }
     });
-//serving static files
-app.use(express.static('public'));
 
-
-//middlewares
+//body-parser middlewares
 app.use(bodyparser.json());
 
 //view engine
 app.set('view engine', 'ejs');
-app.set('views', 'views');
+
+
+//serving static files
+app.use(express.static('public'));
 
 //routes
 app.get('/', (req,res)=>{
