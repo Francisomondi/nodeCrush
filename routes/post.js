@@ -32,11 +32,6 @@ const uploads = multer({
   storage: storage
 }).single('image');
 
-//file upload
-router.post('/uploads', (req,res)=>{
-  res.send('the file will send');
-});
-
 //create posts
 router.post('/',async (req,res)=>{
   const post = new Post({

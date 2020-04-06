@@ -6,10 +6,6 @@ const ejs = require('ejs');
 const bodyparser = require('body-parser');
 const multer = require('multer');
 const path = require('path');
-const uploads = require('./models/upload');
-
-//importing routes
-postsRouter = require('./routes/post');
 
 //DB CONNECTION
 mongoose.connect(process.env.DB_CONNECTION,
@@ -19,50 +15,34 @@ mongoose.connect(process.env.DB_CONNECTION,
        if(!error){
            console.log('connected to db');
         }else{
-           console.log(`error connecting to the db ${error}`);
+           console.log(`error connecting to the db!!!! ${error}`);
      }
     });
-
+    
 //body-parser middlewares
 app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({extended: false}));
 
 //view engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-
 //serving static files
 app.use(express.static('public'));
-
-
-app.use('/posts', postsRouter);
 
 //loading home page
 app.get('/', (req,res)=>{
  res.render('index');
 });
 
-app.post('/uploads', async (req, res) => {
-   const upload = new uploads({
-      firstname: req.body.firstname,
-      lastname: req.body.lastname,
-      email: req.body.email,
-      password: req.body.password,
-      address: req.body.address,
-      city: req.body.city,
-      story: req.body.story
-   });
+//importing routes
+const postsRouter = require('./routes/post');
+const uploadsRouter = require('./routes/upload');
+const UserRouter = require('./routes/users');
 
-   try {
-      const savedUpload = await upload.save()
-      res.send(savedUpload);
-   }
-   catch (error) {
-      res.json({ message: error });
-   }  
-});
-
-
+app.use('/posts', postsRouter);
+app.use('/uploads', uploadsRouter);
+app.use('/users', UserRouter);
 
 //listen to a server
 const port = process.env.PORT || 3000;
