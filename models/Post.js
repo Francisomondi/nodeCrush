@@ -1,12 +1,17 @@
 const mongoose = require('mongoose');
 
-const postsSchema = mongoose.Schema(
+const postSchema = mongoose.Schema(
     {
         title:{
             type: String,
             required: true
         },
-        description: {
+        
+        author: {
+            type: String,
+            required: true
+        },
+        story: {
             type: String,
             required: true
         },
@@ -17,4 +22,4 @@ const postsSchema = mongoose.Schema(
     }
 );
 
-module.exports= mongoose.model('posts',postsSchema);
+const posts   = module.exports= mongoose.model('posts',postSchema);

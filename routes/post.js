@@ -6,31 +6,26 @@ const multer = require('multer');
 const path = require('path');
 
 //GET BACK ALL THE POSTS
-router.get('/',async (req,res)=>{
+router.get('/', async (req,res)=>{
+  
   try{
-    const posts = await Post.find();
-    res.json(posts);
+    const posts= await Post.find();
+    res.render('./post/index', {
+      posts: posts
+
+    });
 
   }catch(error){
     res.json({message: error});
 
   }
-  
 
 });
 
-//set storage engine
-const storage = multer.diskStorage({
-  destination: './public/uploads/',
-  filename: (req, file, cb) => {
-    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-
-  }
+router.get('/add', (req, res) => {
+  res.render('./post/add');
 });
-///init upload
-const uploads = multer({
-  storage: storage
-}).single('image');
+
 
 //create posts
 router.post('/',async (req,res)=>{

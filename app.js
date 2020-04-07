@@ -8,7 +8,8 @@ const multer = require('multer');
 const path = require('path');
 
 //DB CONNECTION
-mongoose.connect(process.env.DB_CONNECTION,
+mongoose.connect( "mongodb://localhost/crushcourse",
+//process.env.DB_CONNECTION   
    { useNewUrlParser: true,
     useUnifiedTopology: true  },
     (error)=> {
@@ -32,7 +33,12 @@ app.use(express.static('public'));
 
 //loading home page
 app.get('/', (req,res)=>{
- res.render('index');
+
+   res.render('index');
+});
+
+app.get('/post/add', (req, res)=>{
+    res.render('./post/add');
 });
 
 //importing routes

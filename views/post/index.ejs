@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,14 +8,15 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
         integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <link rel="stylesheet" href="./css/style.css">
-    
+    <link rel="stylesheet" href="./css/style.css">
+
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
         integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    
-    
+
+
 </head>
+
 <body>
     <nav class="navbar navbar-fixed-top navbar-inverse">
         <div class="container">
@@ -38,28 +40,32 @@
             </div><!-- /.nav-collapse -->
         </div><!-- /.container -->
     </nav><!-- /.navbar -->
-    
+
     <div class="container" id="bode">
-    
+
         <div class="row row-offcanvas row-offcanvas-right">
-    
+
             <div class="col-xs-12 col-sm-9">
                 <p class="pull-right visible-xs">
                     <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
                 </p>
                 <div class="jumbotron">
-                    <h1>Node js Crush course</h1>
-                    
-                    <div class="jumbotron">
-                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
-                            mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
-                            magna mollis euismod. Donec sed odio dui. </p>
-                    </div>
+                    <h2>Node js Crush course- Posts</h2>
+                    <h3>posts</h3>
+
+                    <ul>
+                        <% posts.forEach((post)=>{%>
+                            <li><%= post.title %></li>
+                       <% })%>
+
+                    </ul>
+
                 </div>
                 <div class="row">
                     <div class="col-xs-6 col-lg-4">
                         <h2>Heading</h2>
-                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
+                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo,
+                            tortor
                             mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
                             magna mollis euismod. Donec sed odio dui. </p>
                         <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
@@ -67,7 +73,8 @@
                     <!--/.col-xs-6.col-lg-4-->
                     <div class="col-xs-6 col-lg-4">
                         <h2>Heading</h2>
-                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
+                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo,
+                            tortor
                             mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
                             magna mollis euismod. Donec sed odio dui. </p>
                         <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
@@ -75,7 +82,8 @@
                     <!--/.col-xs-6.col-lg-4-->
                     <div class="col-xs-6 col-lg-4">
                         <h2>Heading</h2>
-                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
+                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo,
+                            tortor
                             mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
                             magna mollis euismod. Donec sed odio dui. </p>
                         <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
@@ -83,7 +91,8 @@
                     <!--/.col-xs-6.col-lg-4-->
                     <div class="col-xs-6 col-lg-4">
                         <h2>Heading</h2>
-                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
+                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo,
+                            tortor
                             mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
                             magna mollis euismod. Donec sed odio dui. </p>
                         <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
@@ -91,7 +100,8 @@
                     <!--/.col-xs-6.col-lg-4-->
                     <div class="col-xs-6 col-lg-4">
                         <h2>Heading</h2>
-                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
+                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo,
+                            tortor
                             mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
                             magna mollis euismod. Donec sed odio dui. </p>
                         <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
@@ -99,7 +109,8 @@
                     <!--/.col-xs-6.col-lg-4-->
                     <div class="col-xs-6 col-lg-4">
                         <h2>Heading</h2>
-                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
+                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo,
+                            tortor
                             mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
                             magna mollis euismod. Donec sed odio dui. </p>
                         <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
@@ -109,7 +120,7 @@
                 <!--/row-->
             </div>
             <!--/.col-xs-12.col-sm-9-->
-    
+
             <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
                 <div class="list-group">
                     <h2>quick links</h2>
@@ -128,22 +139,23 @@
             <!--/.sidebar-offcanvas-->
         </div>
         <!--/row-->
-    
+
         <hr>
-    
+
         <footer>
             <p>&copy; 2016 Company, Inc.</p>
         </footer>
-    
+
     </div>
     <!--/.container-->
 
-    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-    crossorigin="anonymous"></script>
-    
+
 </body>
+
 </html>
