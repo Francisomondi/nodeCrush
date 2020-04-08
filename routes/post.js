@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const Post = require('../models/Post');
+const Post = require(`../models/Post`);
 
 const path = require('path');
+const mongoose = require('mongoose');
 
 //GET BACK ALL THE POSTS
 router.get('/', async (req,res)=>{
@@ -47,12 +48,17 @@ router.post('/add',async (req,res)=>{
 
 
 //get back a specific post
-router.get('/:id', async (req, res)=>{
-  try{
+router.get('/:id', async (req, res)=>{ 
+ try{
+  
     const post = await Post.findById(req.params.id);
-    res.json(post);
-  }catch(error){
-    res.json({message: error});
+     res.render('post/show',{
+       post:post
+       
+     })
+   }
+   catch(error){
+     res.json({message: error});
 
   }
   
