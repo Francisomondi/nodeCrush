@@ -28,13 +28,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#"><img src="img/a.png">
+                <a class="navbar-brand" href="/"><img src="img/a.png">
                 </a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#about">About</a></li>
+                    <li class="active"><a href="/">Home</a></li>
+                    <li><a href="/posts/add">create post</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </div><!-- /.nav-collapse -->
@@ -51,34 +51,32 @@
                 </p>
                 <div class="jumbotron">
                     <h1>Add posts</h1>
-                    <form action="/uploads" method="POST" enctype="multipart/form-data">
-
-                        <div class="form-row">
+                    <form action="/posts/add" method="POST">
                             <div class="form-group col-md-6">
                                 <label for="title">Title</label>
                                 <input type="text" name="title" class="form-control" placeholder="title">
                             </div>
-                            <div class="form-row">
+                           
                                 <div class="form-group col-md-6">
                                     <label for="author">Author</label>
                                     <input type="text" name="author" class="form-control" id="author">
                                 </div>
                             
-                            </div>
+                            
             
-                        </div>
+                        
                         <div class="form-row">
                             <div class="form-group col-md-12">
-                                <label for="inputAddress2">Your story</label>
-                                <textarea class="form-control" name="story" form="usrform" placeholder="Tell us your story..."> </textarea>
+                                <label for="story">Your story</label>
+                                <textarea class="form-control" name="story"  placeholder="Tell us your story..."> </textarea>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary btn-large">Submit</button>
                         </form>
-                        </div>
+                </div>
                                
-                        </div>
-                        
+            </div>
+
             <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
                 <div class="list-group">
                     <h2>quick links</h2>

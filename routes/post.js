@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Post = require('../models/Post');
-const fs = require('fs');
-const multer = require('multer');
+
 const path = require('path');
 
 //GET BACK ALL THE POSTS
@@ -28,21 +27,22 @@ router.get('/add', (req, res) => {
 
 
 //create posts
-router.post('/',async (req,res)=>{
-  const post = new Post({
-   title: req.body.title,
-    description: req.body.description
-  });
-    
-  try{
-    const savedPost = await post.save()
-    res.json(savedPost);
-  }
-  catch(error){
-     res.json({message: error});
-  }
-  
-
+router.post('/add',async (req,res)=>{
+ const posts = new Post({
+    title: req.body.title,
+    author: req.body.author,
+    story: req.body.story
+ });
+  // posts.title= req.body.title;
+   // posts.author= req.body.author;
+   // posts.story= req.body.story;
+ 
+ try {
+    await posts.save();
+    res.redirect('/posts'); 
+ } catch (error) {
+   res.json({ message: error });
+ }
 });
 
 

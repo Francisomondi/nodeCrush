@@ -1,25 +1,26 @@
 const mongoose = require('mongoose');
 
-const postSchema = mongoose.Schema(
-    {
-        title:{
-            type: String,
-            required: true
-        },
-        
-        author: {
-            type: String,
-            required: true
-        },
-        story: {
-            type: String,
-            required: true
-        },
-        date:{
-            type: Date,
-            default: Date.now
-        }
-    }
-);
+const postSchema = mongoose.Schema({
+  title: {
+    type: String,
+    required: "please enter title",
+    trim: true,
+  },
 
-const posts   = module.exports= mongoose.model('posts',postSchema);
+  author: {
+    type: String,
+    required: "please enter the author",
+    trim: true,
+  },
+  story: {
+    type: String,
+    required: "please enter story",
+    trim: true,
+  },
+  date: {
+    type: Date,
+    default: Date.now,
+  }
+});
+
+const Post = module.exports= mongoose.model('posts',postSchema);
