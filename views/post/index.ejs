@@ -55,7 +55,7 @@
 
                     <ul class="list-group">
                         <% posts.forEach((post)=>{%>
-                          <a href="/posts/id"><li class="list-group-item"><%= post.title %></li></a>
+                          <a href="/posts/<%= post.id %>"><li class="list-group-item"><%= post.title %></li></a>
                        <% })%>
 
                     </ul>
