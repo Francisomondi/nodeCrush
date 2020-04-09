@@ -64,6 +64,41 @@ router.get('/:id', async (req, res)=>{
   
 });
 
+//edit post
+router.get('/edit/:id', async (req, res) => {
+  try {
+
+    const post = await Post.findById(req.params.id);
+    res.render('post/edit', {
+      post: post
+
+    })
+  }
+  catch (error) {
+    res.json({ message: error });
+
+  }
+
+});
+
+//update posts
+router.post('/edit/:id', async (req, res) => {
+  const posts ={
+  };
+   posts.title= req.body.title;
+   posts.author= req.body.author;
+   posts.story= req.body.story;
+
+   let query = {_id: req.params.id}
+
+  try {
+    await Post.updateOne(query,posts);
+    res.redirect('/posts');
+  } catch (error) {
+    res.json({ message: error });
+  }
+});
+
 
 
 //remove posts

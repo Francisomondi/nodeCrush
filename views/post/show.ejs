@@ -63,7 +63,8 @@
                     <div class="col-xs-6 col-lg-4">
                         <h2><%=post.title%></h2>
                         <p><%=post.story%> </p>
-                        <p><a class="btn btn-default" href="#" role="button"><%=post.author%> &raquo;</a></p>
+                        <h6 class="author">Written by <i><%=post.author%></i> </h6>
+                        <a class="btn btn-info" href="/posts/edit/<%= post.id %>" role="button">Edit &raquo;</a>
                     </div>
                     <!--/.col-xs-6.col-lg-4-->
                     <div class="col-xs-6 col-lg-4">
