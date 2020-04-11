@@ -8,7 +8,9 @@ $(document).ready(function(){
       
       success: function(response){
           alert('Deleting post');
-          window.location.href='/';
+          ;
+          window.location.href='/posts';
+           
       },
       error : function(err){
           console.log(err)

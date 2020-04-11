@@ -6,6 +6,9 @@ const ejs = require('ejs');
 const bodyparser = require('body-parser');
 const multer = require('multer');
 const path = require('path');
+const session = require("express-session");
+const expressValidator = require("express-validator");
+const flash = require("connect-flash");
 
 //DB CONNECTION
 mongoose.connect( "mongodb://localhost/crushcourse",
@@ -30,6 +33,26 @@ app.set('view engine', 'ejs');
 
 //serving static files
 app.use(express.static('public'));
+
+//express session middleware
+app.use(
+  session({
+    secret: "keyboard cat",
+    resave: true,
+    saveUninitialized: true 
+   
+  })
+);
+
+//express messages middleware
+app.use(require("connect-flash")());
+app.use(function (req, res, next) {
+  res.locals.messages = require("express-messages")(req, res);
+  next();
+});
+
+//express validator
+
 
 //loading home page
 app.get('/', (req,res)=>{

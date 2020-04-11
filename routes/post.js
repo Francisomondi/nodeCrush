@@ -40,6 +40,7 @@ router.post('/add',async (req,res)=>{
  
  try {
     await posts.save();
+    req.flash('success', 'post added');
     res.redirect('/posts'); 
  } catch (error) {
    res.json({ message: error });
@@ -92,6 +93,7 @@ router.post('/edit/:id', async (req, res) => {
 
   try {
     await Post.updateOne(query,posts);
+     req.flash("success", "post updated");
     res.redirect('/posts');
   } catch (error) {
     res.json({ message: error });
@@ -104,6 +106,7 @@ router.post('/edit/:id', async (req, res) => {
 router.delete('/:id', async (req, res)=>{
   try{
      await Post.remove({ _id: req.params.id });
+      req.flash("danger", "post deleted");
     res.send('success');
   }catch(error){
     res.json({message:error});
