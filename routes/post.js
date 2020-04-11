@@ -83,8 +83,7 @@ router.get('/edit/:id', async (req, res) => {
 
 //update posts
 router.post('/edit/:id', async (req, res) => {
-  const posts ={
-  };
+  const posts ={};
    posts.title= req.body.title;
    posts.author= req.body.author;
    posts.story= req.body.story;
@@ -104,8 +103,8 @@ router.post('/edit/:id', async (req, res) => {
 //remove posts
 router.delete('/:id', async (req, res)=>{
   try{
-    const removedPost = await Post.deleteOne({ _id: req.params.id });
-    res.json(removedPost);
+     await Post.remove({ _id: req.params.id });
+    res.send('success');
   }catch(error){
     res.json({message:error});
   }

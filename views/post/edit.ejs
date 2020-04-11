@@ -35,7 +35,7 @@
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="/">Home</a></li>
                     <li><a href="/posts/add">create post</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="/posts">Posts</a></li>
                 </ul>
             </div><!-- /.nav-collapse -->
         </div><!-- /.container -->
@@ -65,7 +65,7 @@
                             <div class="form-group col-md-12">
                                 <label for="story">Your story</label>
                                 <textarea class="form-control" name="story"
-                                    value = <%= post.story %>> </textarea>
+                                    value = <%=post.story%>><%=post.story%> </textarea>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary btn-large">Submit</button>
