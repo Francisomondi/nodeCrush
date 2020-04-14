@@ -8,7 +8,7 @@ const bcrypt = require('bcryptjs');
 
  //get from form
  router.get('/register', (req, res)=>{
-     res.render('register');
+     res.render('./user/register');
 
  });
 
@@ -40,7 +40,6 @@ const bcrypt = require('bcryptjs');
              email: email,
              password: password
              
-
          });
 
          bcrypt = genSalt(10 , (err, salt)=>{
@@ -71,7 +70,7 @@ const bcrypt = require('bcryptjs');
      }
  });
 
- router.get('/users/login', (req,res)=>{
-     res.render('login')
+ router.get('/login', (req,res)=>{
+     res.render('./user/login')
  });
  module.exports = router;

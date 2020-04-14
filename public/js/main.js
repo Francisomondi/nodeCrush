@@ -8,7 +8,6 @@ $(document).ready(function(){
       
       success: function(response){
           alert('Deleting post');
-          ;
           window.location.href='/posts';
            
       },

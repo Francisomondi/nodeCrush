@@ -93,7 +93,7 @@ router.post('/edit/:id', async (req, res) => {
 
   try {
     await Post.updateOne(query,posts);
-     req.flash("success", "post updated");
+     req.flash("danger", "post updated");
     res.redirect('/posts');
   } catch (error) {
     res.json({ message: error });

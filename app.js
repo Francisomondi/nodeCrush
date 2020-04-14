@@ -22,17 +22,36 @@ mongoose.connect( "mongodb://localhost/crushcourse",
            console.log(`error connecting to the db!!!! ${error}`);
      }
     });
+
+//view engine
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
     
 //body-parser middlewares
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended: false}));
 
-//view engine
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-
 //serving static files
 app.use(express.static('public'));
+
+//express validator
+//app.use(
+  //expressValidator({ errorFormatter: (param, msg, value) => {
+    // let namespace = param.split('.'),
+    // root = namespace.shift(),
+    // formParam = root;
+     //while(namespace.length){
+      //  formParam += '[' + namespace.shift() + ']';
+    // }
+
+    // return {
+     //   param: formParam,
+     //   msg: msg,
+     //   value: value
+    // };
+  //}
+  //})
+//);
 
 //express session middleware
 app.use(
@@ -51,7 +70,6 @@ app.use(function (req, res, next) {
   next();
 });
 
-//express validator
 
 
 //loading home page
