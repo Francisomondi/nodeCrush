@@ -35,23 +35,23 @@ app.use(bodyparser.urlencoded({extended: false}));
 app.use(express.static('public'));
 
 //express validator
-//app.use(
-  //expressValidator({ errorFormatter: (param, msg, value) => {
-    // let namespace = param.split('.'),
-    // root = namespace.shift(),
-    // formParam = root;
-     //while(namespace.length){
-      //  formParam += '[' + namespace.shift() + ']';
-    // }
+app.use(
+  expressValidator({ errorFormatter: (param, msg, value) => {
+     let namespace = param.split('.'),
+     root = namespace.shift(),
+     formParam = root;
+     while(namespace.length){
+        formParam += '[' + namespace.shift() + ']';
+     }
 
-    // return {
-     //   param: formParam,
-     //   msg: msg,
-     //   value: value
-    // };
-  //}
-  //})
-//);
+     return {
+        param: formParam,
+        msg: msg,
+        value: value
+     };
+  }
+  })
+);
 
 //express session middleware
 app.use(

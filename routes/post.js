@@ -28,23 +28,33 @@ router.get('/add', (req, res) => {
 
 
 //create posts
-router.post('/add',async (req,res)=>{
- const posts = new Post({
-    title: req.body.title,
-    author: req.body.author,
-    story: req.body.story
- });
+router.post('/add', (req,res)=>{
+ 
   // posts.title= req.body.title;
    // posts.author= req.body.author;
    // posts.story= req.body.story;
- 
- try {
-    await posts.save();
-    req.flash('success', 'post added');
-    res.redirect('/posts'); 
- } catch (error) {
-   res.json({ message: error });
- }
+   req.checkBody("title", "Title is required").notEmpty();
+   req.checkBody("author", "author is required").notEmpty();
+   req.checkBody("story", "story is required").notEmpty();
+
+   const errors = req.validationErrors();
+   if (errors) {
+     res.render("./post/add", {
+       errors: errors,
+     });
+
+   }
+    else {
+    const posts = new Post({
+      title: req.body.title,
+      author: req.body.author,
+      story: req.body.story,
+    });
+      posts.save();
+     req.flash("success", "post added SUCCESSFULLY");
+     res.redirect("/posts");
+   } 
+   
 });
 
 
@@ -93,7 +103,7 @@ router.post('/edit/:id', async (req, res) => {
 
   try {
     await Post.updateOne(query,posts);
-     req.flash("danger", "post updated");
+     req.flash("success", "post updated Successfuly");
     res.redirect('/posts');
   } catch (error) {
     res.json({ message: error });
@@ -105,7 +115,7 @@ router.post('/edit/:id', async (req, res) => {
 //remove posts
 router.delete('/:id', async (req, res)=>{
   try{
-     await Post.remove({ _id: req.params.id });
+     await Post.deleteOne({ _id: req.params.id });
       req.flash("danger", "post deleted");
     res.send('success');
   }catch(error){
