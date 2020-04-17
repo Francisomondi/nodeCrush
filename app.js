@@ -4,11 +4,12 @@ const mongoose = require ('mongoose');
 require('dotenv/config');
 const ejs = require('ejs');
 const bodyparser = require('body-parser');
-const multer = require('multer');
 const path = require('path');
 const session = require("express-session");
 const expressValidator = require("express-validator");
 const flash = require("connect-flash");
+const passport = require('passport');
+require('./config/passport')(passport);
 
 //DB CONNECTION
 mongoose.connect( "mongodb://localhost/crushcourse",
@@ -69,6 +70,12 @@ app.use(function (req, res, next) {
   res.locals.messages = require("express-messages")(req, res);
   next();
 });
+
+//passport config
+require('./config/passport');
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 

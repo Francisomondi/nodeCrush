@@ -30,9 +30,10 @@ router.get('/add', (req, res) => {
 //create posts
 router.post('/add', (req,res)=>{
  
-  // posts.title= req.body.title;
-   // posts.author= req.body.author;
-   // posts.story= req.body.story;
+  title= req.body.title;
+   author= req.body.author;
+   story= req.body.story;
+
    req.checkBody("title", "Title is required").notEmpty();
    req.checkBody("author", "author is required").notEmpty();
    req.checkBody("story", "story is required").notEmpty();
@@ -40,15 +41,15 @@ router.post('/add', (req,res)=>{
    const errors = req.validationErrors();
    if (errors) {
      res.render("./post/add", {
-       errors: errors,
+       errors: errors
      });
 
    }
     else {
     const posts = new Post({
-      title: req.body.title,
-      author: req.body.author,
-      story: req.body.story,
+      title: title,
+      author: author,
+      story: story
     });
       posts.save();
      req.flash("success", "post added SUCCESSFULLY");
