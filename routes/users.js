@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 
 //user model
- const user = require('../models/user');
+ const User = require('../models/user');
 
  //get from form
  router.get('/register', (req, res)=>{
@@ -29,32 +29,40 @@ const passport = require('passport');
 
      const errors = req.validationErrors();
      if(errors){
+         console.log(errors);
+
          res.render('./user/register', {
-             errors: errors
+             errors,
+             name,
+             email,
+             username,
+             password,
+             password2
          });
          
      }else{
-         const newUser = new user({
-             name : name,
-             username: username,
-             email: email,
-             password: password
+         const newUser = new User({
+             name,
+             username,
+             email,
+             password
              
          });
-
-         bcrypt.genSalt(10 , (err, salt)=>{
-             bcrypt.hash(newUser.password, salt, (err, hash)=>{
-                 if(err){
-                   console.log(err);
-                 }
+      //hash password 
+         bcrypt.genSalt(10 , (error, salt)=>{
+             bcrypt.hash(newUser.password, salt, (error, hash)=>{
+                 if(error){
+                   throw error;
+                 } 
                  else{
                      newUser.password = hash;
-                     newUser.save((err)=>{
-                         if(err){
-                             console.log(err);
+                     newUser.save((error)=>{
+                         if(error){
+                             console.log(error);
                              return;
                          }
                          else{
+                             console.log(req.body);
                              req.flash('success', 'successfully registered, please log in');
                              res.redirect('/users/login');
                          }
@@ -75,11 +83,12 @@ const passport = require('passport');
      res.render('./user/login');
  });
 
-router.post('/login',
+router.post('/login',(req,res,next)=>{
     passport.authenticate('local', {
-        successRedirect: '/',
+        successRedirect: '/dashboard',
         failureRedirect: '/users/login',
         failureFlash: true
-    })
+    })(req,res,next);
+}   
 );
  module.exports = router;

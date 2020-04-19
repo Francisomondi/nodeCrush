@@ -63,38 +63,31 @@ app.use(
    
   })
 );
+//passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
 
 //express messages middleware
-app.use(require("connect-flash")());
-app.use(function (req, res, next) {
+app.use(flash());
+app.use((req, res, next) =>{
   res.locals.messages = require("express-messages")(req, res);
   next();
 });
 
-//passport config
-require('./config/passport');
 
 app.use(passport.initialize());
 app.use(passport.session());
-
-
-
-//loading home page
-app.get('/', (req,res)=>{
-
-   res.render('index');
-});
-
-
 
 //importing routes
 const postsRouter = require('./routes/post');
 const uploadsRouter = require('./routes/upload');
 const UserRouter = require('./routes/users');
+const indexRouter = require('./routes/index');
 
 app.use('/posts', postsRouter);
 app.use('/uploads', uploadsRouter);
 app.use('/users', UserRouter);
+app.use('/', indexRouter);
 
 //listen to a server
 const port = process.env.PORT || 3000;

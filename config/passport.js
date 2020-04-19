@@ -1,36 +1,45 @@
 const LocalStrategy = require('passport-local').Strategy;
-const User = require('../models/user');
 const bcrypt = require('bcryptjs');
-const passport = require('passport');
+mongoose = require('mongoose');
+const User = require('../models/user');
 
 module.exports = (passport)=>{
 
 // implement local strategy
-    passport.use(new LocalStrategy(
-         (username, password, done) =>{
+    passport.use(new 
+        LocalStrategy({username: 'email'}, (email, password, done) =>{
 
-            const querry = { username: username } 
-            User.findOne(querry, (err, user)=> {
+            const querry = { email: email }; 
+            User.findOne(querry, (err, User)=> {
                 if (err) {
-                     return done(err); 
+                     throw err;  
                     }
-                if (!user) {
-                   return done(null, false, { message: 'Incorrect username.' });
+                if (!User) {
+                   return done(null, false, { message: 'Incorrect email.' });
                 }
-                if (!user.validPassword(password)) {
-                    return done(null, false, { message: 'Incorrect password.' });
-                }
-                return done(null, user);
+
+                //match password
+                bcrypt.compare(password, User.password, (err,isMatch)=>{
+                    if(err)
+                    throw err;
+                    if(isMatch){
+                      return done(null, User);
+                    }else{
+                        return done(null, false, { message: 'wrong password' });
+
+                    }
+                });
+                
             });
         }
     ));
-    passport.serializeUser(function (user, done) {
-        done(null, user.id);
+    passport.serializeUser( (User, done)=> {
+        done(null, User.id);
     });
 
-    passport.deserializeUser(function (id, done) {
-        User.findById(id, function (err, user) {
-            done(err, user);
+    passport.deserializeUser( (id, done)=> {
+        User.findById(id, (err, User)=> {
+            done(err, User);
         });
     });
 

@@ -43,7 +43,6 @@ router.post('/add', (req,res)=>{
      res.render("./post/add", {
        errors: errors
      });
-
    }
     else {
     const posts = new Post({
